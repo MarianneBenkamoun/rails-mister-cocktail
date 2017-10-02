@@ -3,8 +3,8 @@
 <%= link_to "ajoutez un nouveau cocktail", new_cocktail_path, class: "btn btn-primary" %>
 <% @cocktails.each do |cocktail| %>
   <h2><%= cocktail.name %></h2>
-
-  <% end %>
-
   <%= link_to"allezvoir", cocktail_path(cocktail), class: "btn btn-success" %>
+  <%= link_to"Delete", cocktail_path(cocktail), class: "btn-danger",
+  method: :delete,
+  data: { confirm: "Are you sure?" }  %>
 <% end %>

@@ -1,13 +1,17 @@
 
-1.times do
-  cocktail = Cocktail.new(name: "Le "+Faker::BossaNova.artist)
+ingredients = %w(eau vin sucre oeuf farine chocolat)
+
+ingredients.each do |ingredient|
+  Ingredient.create(name:ingredient)
+end
+
+
+
+
+7.times do
+  cocktail = Cocktail.new(name: "Le "+Faker::StarWars.droid)
   cocktail.save!
-  ingredient = Ingredient.new(name:Faker::Food.ingredient)
-  ingredient.save!
-    1.times do
-      dose = Dose.new(description: "ajoutez 10cl de #{ingredient}" , cocktail:cocktail, ingredient:ingredient )
-      dose.save!
-    end
   end
+
 
 
