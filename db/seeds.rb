@@ -1,17 +1,7 @@
-
-ingredients = %w(eau vin sucre oeuf farine chocolat)
+Ingredient.destroy_all
+ingredients = %w(eau citron framboise vodka tequila sucre rhum)
 
 ingredients.each do |ingredient|
   Ingredient.create(name:ingredient)
 end
-
-
-
-
-4.times do
-  cocktail = Cocktail.new(name: "Le "+Faker::StarWars.droid)
-  cocktail.save!
-  end
-
-
 

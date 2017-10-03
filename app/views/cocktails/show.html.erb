@@ -1,13 +1,34 @@
 
-    <%=  cl_image_tag("w907rssr2ifjkqowrsg1.jpg", :effect=>"hue:80", width: 400, height: 300, crop: :scale, :radius=>"max") %>
+<div class="container">
+<div class="container">
+ <div class="col-xs-6 col-md-offset-3">
+  <div class="cardbig">
+    <div><h2> <%= @cocktail.name %> </h2></div>
+    <%= cl_image_tag @cocktail.photo, height: 300, width: 400, crop: :fill %>
+    <div class="flex">
+      <%= link_to"Delete", cocktail_path(@cocktail), class: "btn-special",
+      method: :delete,
+      data: { confirm: "Are you sure?" }  %>
+      <%= link_to "back", cocktails_path, class:"btn-special " %>
+    </div>
+  </div>
 
+  <% @cocktail.doses.each do |dose| %>
+  <div class="flex">
+    <p><%= dose.description %> de <%=dose.ingredient.name%> </p>
+    <%= link_to "Delete", dose_path(dose), class: "btn-special", method: :delete, data: { confirm: "Are you sure?" }%>
+  </div>
+  <% end %>
+</div>
+</div>
 
-<h2> <%= @cocktail.name %> </h2>
-<%= link_to "add an ingredient", new_cocktail_dose_path(@cocktail), class: "btn btn-success"%>
-<% @cocktail.doses.each do |dose| %>
-  <h2><%= dose.description %> de <%=dose.ingredient.name%> </h2>
-  <%= link_to "Delete", dose_path(dose), class: "btn-danger", method: :delete, data: { confirm: "Are you sure?" }%>
-
+<div class= "container">
+<%= simple_form_for [@cocktail, @dose] do |f| %>
+<%= f.input :description %>
+<%= f.input :ingredient_id, collection: @ingredients, :prompt => 'Select One' %>
+<%= f.submit "add a dose", class: "btn btn-primary" %>
 <% end %>
+</div>
 
-<%= link_to "back", cocktails_path %>
+</div>
+

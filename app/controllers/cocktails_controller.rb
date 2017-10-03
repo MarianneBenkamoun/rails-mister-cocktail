@@ -7,6 +7,8 @@ class CocktailsController < ApplicationController
   end
 
   def show
+    @dose=Dose.new
+    @ingredients = Ingredient.all
     # @review=Review.new (si on embbedde le form dans le show de restaurant)
     # assigns the requested restaurant as @restaurant (FAILED - 2)
     # / @restaurant = Restaurant.find(params[:id])/
@@ -35,7 +37,7 @@ class CocktailsController < ApplicationController
   private
 
   def cocktail_params
-    params.require(:cocktail).permit(:name)
+    params.require(:cocktail).permit(:name, :photo, :photo_cache)
   end
 
   def set_cocktail
