@@ -8,7 +8,7 @@ end
 
 
 
-7.times do
+5.times do
   cocktail = Cocktail.new(name: "Le "+Faker::StarWars.droid)
   cocktail.save!
   end
